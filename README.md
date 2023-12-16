@@ -1,6 +1,6 @@
 
 <h2 align="center">
- <b>Welcome to our URL Shortener API!</b>
+ <b>Welcome to my URL Shortener API!</b>
 </h2>
 
 <p>
