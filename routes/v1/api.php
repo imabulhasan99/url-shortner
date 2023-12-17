@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UrlController;
+use App\Http\Controllers\v1\UrlController;
 use App\Http\Controllers\v1\AuthController;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,6 +23,11 @@ use Illuminate\Support\Facades\Auth;
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout', [AuthController::class,'logout'])->name('logout');
+        Route::prefix('url')->group(function () {
+            Route::post('create', [UrlController::class,'store'])->name( 'url.store');
+        });
+    
+    
 });
 
 Route::middleware('guest:sanctum')->group(function () {
