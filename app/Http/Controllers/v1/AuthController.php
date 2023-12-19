@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\v1;
 
 use Illuminate\Http\Request;
-use App\Services\LoginService;
+use App\Services\v1\LoginService;
 use App\Http\Requests\LoginRequest;
 use App\Http\Controllers\Controller;
-use App\Services\RegistrationService;
+use App\Services\v1\RegistrationService;
 use App\Http\Requests\RegistrationRequest;
 use Symfony\Component\HttpFoundation\Response;
 

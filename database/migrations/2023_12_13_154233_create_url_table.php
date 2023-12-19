@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('full_url');
             $table->string('short_url');
             $table->foreignId('user_id')->constrained('users');
-            $table->bigInteger('views');
+            $table->bigInteger('views')->default(0);
         });
 
         Schema::enableForeignKeyConstraints();

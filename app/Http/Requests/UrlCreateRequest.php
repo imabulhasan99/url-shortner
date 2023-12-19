@@ -22,7 +22,7 @@ class UrlCreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'fullurl'  => ['required','string'],
+            'fullurl'  => ['required','url'],
         ];
     }
 }

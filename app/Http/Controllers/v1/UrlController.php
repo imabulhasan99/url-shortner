@@ -6,8 +6,9 @@ use PharIo\Manifest\Url;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Services\v1\UrlCreateService;
+
 use App\Http\Requests\UrlCreateRequest;
-use App\Models\v1\Url as Urls;
 use Symfony\Component\HttpFoundation\Response;
 
 class UrlController extends Controller
@@ -23,22 +24,10 @@ class UrlController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(UrlCreateRequest $request)
+    public function store(UrlCreateRequest $request, UrlCreateService $service)
     {
-       $validatedUrl  = $request->validated();
-       $protocolCheck = explode('//', $validatedUrl['fullurl']);
-       if (count($protocolCheck) <= 1) {
-            $validatedUrl['fullurl'] = 'http://'. $validatedUrl['fullurl'];
-       }
-       $fullUrlExistsOrNot = Urls::where('full_url', 'LIKE', '%' . $validatedUrl['fullurl'] . '%')
-                            ->get();
-            if ($fullUrlExistsOrNot->count() > 0) {
-                if ($fullUrlExistsOrNot[0]['user_id'] === $request->user()->id) {
-                    return response()->json(['short_url' => url($fullUrlExistsOrNot[0]['short_url'])], Response::HTTP_CREATED);
-                } else {
-                    return response()->json(['message'  => 'Next forward'],200);
-                }
-            }
+        $url = $service->create($request->validated(), $request->user());
+        return $url;
     }
 
     /**

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\v1;
 
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
