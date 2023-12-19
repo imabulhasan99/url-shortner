@@ -25,6 +25,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout', [AuthController::class,'logout'])->name('logout');
         Route::prefix('url')->group(function () {
             Route::post('create', [UrlController::class,'store'])->name( 'url.store');
+            Route::get('/list',[UrlController::class,'index']);
         });
     
     
