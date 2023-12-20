@@ -32,7 +32,14 @@ class UrlController extends Controller
     }
 
     public function redirect($shorturl){
-    
+        $urlExistorNot = Urls::where('short_url', $shorturl)->first();
+        if($urlExistorNot){
+            $urlExistorNot->increment('views');
+            return redirect($urlExistorNot->full_url);
+        }
+        abort(404,'URL Not Found');
     }
+
+   
  
 }
