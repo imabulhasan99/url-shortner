@@ -32,7 +32,7 @@ class Handler extends ExceptionHandler
             //
         });
         $this->renderable(function (Throwable $e, Request $request) {
-            //return response()->json(['message' => $e->getMessage()], Response::HTTP_BAD_REQUEST);
+            return response()->json(['message' => $e->getMessage()], Response::HTTP_BAD_REQUEST);
         });
        
     }

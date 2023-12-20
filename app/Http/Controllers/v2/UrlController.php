@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\v1;
+namespace App\Http\Controllers\v2;
 
 
-use App\Models\v1\Url as Urls;
+use App\Models\v2\Url as Urls;
 use App\Http\Resources\UrlResource;
 use App\Http\Controllers\Controller;
-use App\Services\v1\UrlCreateService;
+use App\Services\v2\UrlCreateService;
 use App\Http\Requests\UrlCreateRequest;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -32,11 +32,7 @@ class UrlController extends Controller
     }
 
     public function redirect($shorturl){
-        $urlExistorNot = Urls::where('short_url', $shorturl)->first();
-        if($urlExistorNot){
-            return redirect($urlExistorNot->full_url);
-        }
-        abort(404,'URL Not Found');
+    
     }
  
 }

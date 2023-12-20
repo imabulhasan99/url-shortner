@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\v1\UrlController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,4 +13,4 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+Route::get("/{shorturl}", [UrlController::class,'redirect'])->name('url.redirect');
